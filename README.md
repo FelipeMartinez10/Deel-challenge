@@ -1,10 +1,23 @@
-# Notes
+# Comments
 
-Project structure
-Concurrency
-Logger
-ErrorHandler
-Eslint Airbnb
+### Project structure
+The project is made up of the following folders:
+1. Controllers: Receives the request, validates the inputs, and passes the values to the services.
+1. Services: Implements the business logic. It uses repositories to query the database.
+1. Repositories: Communicates with the database. It executes the queries and passes the data to the services.
+
+### Some things I added
+1. Logger: Added a simple Winston logger to centralize and format the logs printed by the app. This could be useful for adding a new transport like New Relic.
+1. ErrorHandler middleware: Added error handling middleware to catch possible unhandled errors and format them in a more client-friendly format.
+1. Eslint: Added Eslit with Airbnb presets to enforce good coding practices and unify the style.
+
+### Concurrency:
+Set the isolation level to Serializable to avoid data inconsistencies when there were multiple users at the same time. The problem with this approach is that Serializable will significantly limit the number of concurrent users the app can handle. What might be a better solution is to use Optimistic Locking to avoid locking the table. I ran out of time so I decided to go with Serializable.
+
+
+### What would I do differently?
+- I would recommend using Typescript instead of Javascript. Typescript will help catch possible errors in the IDE and at compile time. Also, the code becomes more readable and easier to maintain.
+- I would probably add some unit tests for quality assurance and bug prevention.
 
 
 

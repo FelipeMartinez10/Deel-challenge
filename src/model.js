@@ -1,9 +1,10 @@
 // eslint-disable-next-line max-classes-per-file
-const Sequelize = require('sequelize');
+const { Sequelize, Transaction } = require('sequelize');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite3',
+  isolationLevel: Transaction.ISOLATION_LEVELS.SERIALIZABLE,
 });
 
 class Profile extends Sequelize.Model {}
